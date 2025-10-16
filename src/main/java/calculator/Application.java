@@ -17,9 +17,9 @@ public class Application {
     }
 
     static List<Double> parseUserInput(String userInput) throws IllegalArgumentException{
-        List<Character> separator = new ArrayList<>(Arrays.asList(',', ':'));
-        List<Double> parsedNums = new ArrayList<>();
-        StringBuilder tempString = new StringBuilder();
+        List<Character> separator = new ArrayList<>(Arrays.asList(',', ':')); // init separator
+        List<Double> parsedNums = new ArrayList<>(); // return value
+        StringBuilder tempString = new StringBuilder(); // will be inverted to Double
         userInput += ':';
 
         if (checkCustomSeparator(userInput)) {
@@ -79,8 +79,8 @@ public class Application {
 
         Double sum = 0.0;
 
-        for (int i = 0; i < parsedNums.size(); i++) {
-            sum += parsedNums.get(i);
+        for (Double parsedNum : parsedNums) {
+            sum += parsedNum;
         }
 
         return sum;
