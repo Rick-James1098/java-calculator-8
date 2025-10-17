@@ -7,13 +7,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    public static void main(String[] args) throws IllegalArgumentException{
+        System.out.println("덧샘할 문자열을 입력해 주세요. 소수점아래 10자리까지 정확하게 계산 가능합니다.");
         String userInput = Console.readLine();
+        Double result;
+
         List<Double> parsedNums = parseUserInput(userInput);
 
-        System.out.println(calculateSum(parsedNums));
+        result = calculateSum(parsedNums);
 
+        if (result % 1 == 0) { // if it's integer
+            System.out.printf("결과 : %.0f%n", result);
+        } else {
+            System.out.printf("결과 : %.10f%n", result);
+        }
+
+        Console.close();
     }
 
     static List<Double> parseUserInput(String userInput) throws IllegalArgumentException{
@@ -23,6 +32,9 @@ public class Application {
         userInput += ':';
 
         if (checkCustomSeparator(userInput)) {
+            if (userInput.charAt(2) == '.') {
+                throw new IllegalArgumentException(".은 커스텀 구분자로 사용할 수 없습니다");
+            }
             separator.add(userInput.charAt(2));
         }
 
@@ -38,10 +50,11 @@ public class Application {
 
             for (Character sep : separator) { // is separator?
                 if (sep == curChar) {
-                    if (!tempString.isEmpty()) {
-                        parsedNums.add(Double.parseDouble(tempString.toString()));
+                    if (tempString.isEmpty()) {
+                        throw new IllegalArgumentException("잘못된 입력입니다.");
                     }
 
+                    parsedNums.add(Double.parseDouble(tempString.toString()));
                     tempString.delete(0, tempString.length()); // init
                     isSeparator = Boolean.TRUE;
                     break;
@@ -60,6 +73,8 @@ public class Application {
                     continue;
                 }
             }
+
+            throw new IllegalArgumentException("잘못된 입력입니다");
         }
 
         return parsedNums;
