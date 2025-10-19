@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class Application {
     public static void main(String[] args) throws IllegalArgumentException{
-        System.out.println("덧샘할 문자열을 입력해 주세요. 음수는 입력할 수 없습니다. '.' 은 커스텀 구분자로 사용할 수 없습니다. 소수점아래 10자리까지 정확하게 계산 가능합니다.");
+        System.out.println("덧샘할 문자열을 입력해 주세요. 음수는 입력할 수 없습니다. '.' 은 커스텀 구분자로 사용할 수 없습니다.");
         System.out.print("문자열 : ");
         String userInput = Console.readLine();
         BigDecimal result;
@@ -66,6 +66,7 @@ public class Application {
                     break;
                 }
             }
+
             if (isSeparator == Boolean.TRUE) continue;
 
             if (0 <= curChar - '0'  && 9 >= curChar - '0') { // is number?
