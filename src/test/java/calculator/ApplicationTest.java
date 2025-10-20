@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     @Test
-    void 커스텀_구분자_사용() {
+    void use_custom_separator() {
         assertSimpleTest(() -> {
             run("//;\\n1");
             assertThat(output()).contains("결과 : 1");
@@ -17,10 +17,10 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 양의_실수_사용() { // 정확한 실수 계산
+    void use_positive_actual_number() { // 정확한 실수 계산
         assertSimpleTest(() -> {
             run("0.1,0.2,0.3");
-            assertThat(output().contains("결과 : 0.6"));
+            assertThat(output()).contains("결과 : 0.6");
         });
     }
 
